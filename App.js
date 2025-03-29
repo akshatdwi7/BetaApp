@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   return (
@@ -7,6 +7,7 @@ export default function App() {
       <Text>Tab one is here !... </Text>
       <Text>Tab one is here !... </Text>
       Tab one is here !...
+      <ActivityIndicator> hyh</ActivityIndicator>
       <StatusBar style="auto" />
     </View>
   );
