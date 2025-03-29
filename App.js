@@ -5,6 +5,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Tab one is here !... </Text>
+      <Text>Tab one is here !... </Text>
       <StatusBar style="auto" />
     </View>
   );
