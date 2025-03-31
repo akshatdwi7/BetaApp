@@ -12,6 +12,7 @@ export default function App() {
     <View style={styles.container}>
       <Text style={{ color: "red", margin: 10 }}>Tab one is here !... </Text>
       <Text>Tab one is here !... </Text>
+      <Text>Tab one is here !... </Text>
       <Button title="tap me" />
 
       <StatusBar style="auto" />
