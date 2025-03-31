@@ -4,9 +4,9 @@ import { StyleSheet, Text, View } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={{ color: "red", margin: 10 }}>Tab one is here !... </Text>
-      <Text>Tab1 one is here !.. </Text>
-      <Text>Tab2 one is here !... </Text>
+      <Text style={{ color: "red", margin: 10 }}>Tab one is here! </Text>
+      <Text>Tab1 one is here ! </Text>
+      <Text>Tab2 one is here ! </Text>
       <Button title="tap me" />
 
       <StatusBar style="auto" />
