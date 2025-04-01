@@ -1,11 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { useState } from "react";
 
 export default function App() {
+  const [enteredGoalText, setEnteredGoalText] = useState("");
+  // this is the react native way to handle text input
   function goalInputHandler(enteredText) {
-    console.log(enteredText);
+    setEnteredGoalText(enteredText);
   }
-  function addGoalHandler() {}
+  function addGoalHandler() {
+    console.log(enteredGoalText);
+  }
 
   return (
     <View style={styles.appcontainer}>
@@ -15,7 +20,7 @@ export default function App() {
           placeholder="Your  course Goals! "
           onChangeText={goalInputHandler} // this is the react native way to handle text input
         />
-        <Button title="Add Goal" />
+        <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
         <Text>List of goals...</Text>
