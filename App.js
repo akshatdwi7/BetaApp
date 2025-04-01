@@ -1,5 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import { useState } from "react";
 
 export default function App() {
@@ -12,7 +19,7 @@ export default function App() {
   function addGoalHandler() {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      enteredGoalText,
+      { text: enteredGoalText, id: Math.random().toString() }, // Add a unique ID
     ]);
   }
 
@@ -21,17 +28,20 @@ export default function App() {
       <View style={styles.inputcontainer}>
         <TextInput
           style={styles.textInput}
-          placeholder="Your  course Goals! "
+          placeholder="Your course Goals!"
           onChangeText={goalInputHandler} // this is the react native way to handle text input
         />
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        {courseGoals.map((goal) => (
-          <View key={goal} style={styles.goalItems}>
-            <Text style={{ color: "white" }}>{goal}</Text>
-          </View>
-        ))}
+        <ScrollView>
+          {courseGoals.map((goal) => (
+            <View key={goal.id} style={styles.goalItems}>
+              {/* Use unique ID as key */}
+              <Text style={{ color: "white" }}>{goal.text}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -68,7 +78,7 @@ const styles = StyleSheet.create({
     margin: 8,
     borderColor: "#5e0acc",
     borderWidth: 1,
-    borderRadius: 101,
+    borderRadius: 10,
     backgroundColor: "#5e0acc",
     fontSize: 20,
   },
