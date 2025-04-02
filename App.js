@@ -22,7 +22,11 @@ export default function App() {
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
-
+  function deleteGoalHandler(id) {
+    setCourseGoals((currentCourseGoals) => {
+      return currentCourseGoals.filter((goal) => goal.id !== id);
+    });
+  }
   return (
     <ImageBackground
       source={require("./assets/desk.jpeg")}
@@ -34,7 +38,12 @@ export default function App() {
           <FlatList
             data={courseGoals}
             renderItem={(itemData) => {
-              return <GoalItem text={itemData.item.text} />;
+              return (
+                <GoalItem
+                  text={itemData.item.text}
+                  onDeleteItem={deleteGoalHandler}
+                />
+              );
             }}
             keyExtractor={(item, index) => {
               return item.id;
