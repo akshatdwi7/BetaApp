@@ -7,49 +7,42 @@ import {
   TextInput,
   ScrollView,
   FlatList,
+  ImageBackground,
 } from "react-native";
 import { useState } from "react";
+import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 export default function App() {
-  const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
-  // this is the react native way to handle text input
-  function goalInputHandler(enteredText) {
-    setEnteredGoalText(enteredText);
-  }
-  function addGoalHandler() {
+
+  function addGoalHandler(enteredGoalText) {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      { text: enteredGoalText, id: Math.random().toString() }, // Add a unique ID
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
 
   return (
-    <View style={styles.appcontainer}>
-      <View style={styles.inputcontainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Your course Goals!"
-          onChangeText={goalInputHandler} // this is the react native way to handle text input
-        />
-        <Button title="Add Goal" onPress={addGoalHandler} />
+    <ImageBackground
+      source={require("./assets/desk.jpeg")}
+      style={styles.backgroundImage}
+    >
+      <View style={styles.appcontainer}>
+        <GoalInput onAddGoal={addGoalHandler} />
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={courseGoals}
+            renderItem={(itemData) => {
+              return <GoalItem text={itemData.item.text} />;
+            }}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+          />
+        </View>
       </View>
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={courseGoals}
-          renderItem={(itemData) => {
-            return (
-              <View style={styles.goalItems}>
-                <Text style={{ color: "white" }}>{itemData.item.text}</Text>
-              </View>
-            );
-          }}
-          keyExtractor={(item, index) => {
-            return item.id; // Use the unique ID as the key
-          }}
-        />
-      </View>
-    </View>
+    </ImageBackground>
   );
 }
 
@@ -59,33 +52,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     flex: 1,
   },
-  inputcontainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: "#cccccc",
-    width: "70%",
-    borderRadius: 6,
-    padding: 10,
-    marginRight: 8,
-  },
+
   goalsContainer: {
     flex: 4,
   },
-  goalItems: {
-    padding: 8,
-    margin: 8,
-    borderColor: "#5e0acc",
-    borderWidth: 1,
-    borderRadius: 10,
-    backgroundColor: "#5e0acc",
-    fontSize: 20,
+
+  backgroundImage: {
+    flex: 1,
   },
 });
