@@ -5,12 +5,10 @@ function GoalItem(props) {
   return (
     <Pressable
       onPress={props.onDeleteItem.bind(this, props.id)}
-      onLongPress={() => {
-        Vibration.vibrate(100);
-      }}
+      onLongPress={Vibration.vibrate(100)}
     >
       <View style={styles.goalItems}>
-        <Text style={{ color: "white" }}>{props.text}</Text>
+        <Text style={styles.goalText}>{props.text}</Text>
       </View>
     </Pressable>
   );
@@ -29,5 +27,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignItems: "center",
     fontWeight: "bold",
+  },
+  goalText: {
+    color: "white",
   },
 });
