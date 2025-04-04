@@ -6,9 +6,11 @@ import {
   Button,
   Pressable,
   Modal,
+  Image,
 } from "react-native";
 import React from "react";
 import { useState } from "react";
+import { StatusBar } from "expo-status-bar";
 
 function GoalInput(props) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -22,24 +24,31 @@ function GoalInput(props) {
   }
 
   return (
-    <Modal visible={props.visible} animationType="slide">
-      <View style={styles.inputcontainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Your course Goals!"
-          onChangeText={goalInputHandler} // this is the react native way to handle text input
-          value={enteredGoalText} // this is the react native way to handle text input
-        />
-        <View style={styles.buttonContainer}>
-          <View style={styles.button}>
-            <Button title="Add Goal" onPress={addGoalHandler} />
-          </View>
-          <View style={styles.button}>
-            <Button title="Cancel" onPress={props.oncancel} />
+    <>
+      <StatusBar style="light" />
+      <Modal visible={props.visible} animationType="slide">
+        <View style={styles.inputcontainer}>
+          <Image
+            style={styles.imageicon}
+            source={require("../assets/icons8-goal-100.png")}
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Your course Goals!"
+            onChangeText={goalInputHandler} // this is the react native way to handle text input
+            value={enteredGoalText} // this is the react native way to handle text input
+          />
+          <View style={styles.buttonContainer}>
+            <View style={styles.button}>
+              <Button title="Add Goal" color="pink" onPress={addGoalHandler} />
+            </View>
+            <View style={styles.button}>
+              <Button title="Cancel" color="skyblue" onPress={props.oncancel} />
+            </View>
           </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </>
   );
 }
 
@@ -51,18 +60,17 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
+    backgroundColor: "#311b6b",
     padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
   },
   textInput: {
     borderWidth: 1,
     borderColor: "#cccccc",
     width: "100%",
     borderRadius: 6,
-    backgroundColor: "#ffffff",
-    padding: 10,
+    backgroundColor: "#e4d0ff",
+    color: "#120438",
+    padding: 16,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -71,5 +79,10 @@ const styles = StyleSheet.create({
   button: {
     width: "30%",
     marginHorizontal: 8,
+  },
+  imageicon: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
 });
