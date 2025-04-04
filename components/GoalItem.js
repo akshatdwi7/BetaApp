@@ -6,6 +6,8 @@ function GoalItem(props) {
     <Pressable
       onPress={props.onDeleteItem.bind(this, props.id)}
       onLongPress={Vibration.vibrate(100)}
+      android_ripple={{ color: "#210644" }}
+      style={({ pressed }) => pressed && styles.pressedItem}
     >
       <View style={styles.goalItems}>
         <Text style={styles.goalText}>{props.text}</Text>
@@ -18,7 +20,6 @@ export default GoalItem;
 
 const styles = StyleSheet.create({
   goalItems: {
-    padding: 8,
     margin: 8,
     borderColor: "#5e0acc",
     borderWidth: 1,
@@ -28,7 +29,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontWeight: "bold",
   },
+  pressedItem: {
+    opacity: 0.5,
+  },
   goalText: {
     color: "white",
+    padding: 8,
   },
 });

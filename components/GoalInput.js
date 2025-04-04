@@ -1,4 +1,12 @@
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Pressable,
+  Modal,
+} from "react-native";
 import React from "react";
 import { useState } from "react";
 
@@ -14,15 +22,17 @@ function GoalInput(props) {
   }
 
   return (
-    <View style={styles.inputcontainer}>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Your course Goals!"
-        onChangeText={goalInputHandler} // this is the react native way to handle text input
-        value={enteredGoalText} // this is the react native way to handle text input
-      />
-      <Button title="Add Goal" onPress={addGoalHandler} />
-    </View>
+    <Modal visible={props.visible} animationType="slide">
+      <View style={styles.inputcontainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Your course Goals!"
+          onChangeText={goalInputHandler} // this is the react native way to handle text input
+          value={enteredGoalText} // this is the react native way to handle text input
+        />
+        <Button title="Add Goal" onPress={addGoalHandler} />
+      </View>
+    </Modal>
   );
 }
 
